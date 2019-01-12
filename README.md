@@ -5,6 +5,7 @@
 [![Classification: UNRESTRICTED][classification]](#classification)
 [![Apache 2.0-licensed][license]](#copyright)
 [![Current Travis CI build status][travis]](https://travis-ci.org/tauproject/core)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftauproject%2Fcore.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftauproject%2Fcore?ref=badge_shield)
 
 This project builds a [Docker container image](https://hub.docker.com/r/tauproject/core)
 that is used as the base image for all other containers in this release of the
@@ -235,3 +236,7 @@ This document has been classified **UNRESTRICTED**.
 [release-status]: https://img.shields.io/badge/release%20status-Pre--production-yellow.svg?style=flat-square
 [classification]: https://img.shields.io/badge/classification-UNRESTRICTED-brightgreen.svg?style=flat-square
 [travis]: https://img.shields.io/travis/tauproject/core.svg?style=flat-square
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ftauproject%2Fcore.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ftauproject%2Fcore?ref=badge_large)
