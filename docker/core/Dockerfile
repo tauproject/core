@@ -51,5 +51,5 @@ RUN update-ca-certificates
 # Always run an `apt-get update` before any downstream commands. This means that
 # images don't need to run it themselves.
 
-ONBUILD apt-get update -qq
+ONBUILD RUN apt-get update -qq
 
