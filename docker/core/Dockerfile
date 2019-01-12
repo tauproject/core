@@ -22,6 +22,11 @@
 ARG TAU_CORE_DEBIAN_RELEASE=stable
 FROM debian:${TAU_CORE_DEBIAN_RELEASE}-slim
 
+# Global environment
+ENV CONTAINER docker
+ENV LC_ALL C
+ENV TZ=UTC
+
 # Install additional packages required by almost any downstream image.
 RUN apt-get update -qq && \
 	apt-get upgrade -qq -y && \
