@@ -30,6 +30,14 @@ ENV TZ=UTC
 # Work within root's home directory by default
 WORKDIR /root
 
+# Configure APT
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN echo 'APT::Install-Recommends "0"; \n\
+APT::Install-Suggests "0"; \n\
+APT::Get::Assume-Yes "true"; \n\
+APT::Get::Force-Yes "true";' > /etc/apt/apt.conf.d/01tau
+
 # Install additional packages required by almost any downstream image.
 RUN apt-get update -qq && \
 	apt-get upgrade -qq -y && \
