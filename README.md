@@ -211,6 +211,8 @@ is up to date. The resulting `cloudbuild` tag should be ignored.
 
 ### Copyright
 
+Copyright © 2019.
+
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
 this file except in compliance with the License.
 
@@ -225,7 +227,7 @@ specific language governing permissions and limitations under the License.
 
 ### Classification
 
-This document has been classified **UNRESTRICTED**.
+This project has been classified **UNRESTRICTED**.
 
 ```
 @(#) $Tau: core/README.md $
