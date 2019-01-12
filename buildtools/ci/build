@@ -22,34 +22,15 @@
 
 set -e
 
-if ! test x"${DOCKER_USERNAME}" = x"" ; then
-	echo ${DOCKER_PASSWORD} | docker login --username="${DOCKER_USERNAME}" --password-stdin
+if test -r buildtools/keyring/ssh.privkey.pem ; then
+	eval `ssh-agent -s`
+	ssh-add buildtools/keyring/ssh.privkey.pem
 fi
 
 autoreconf -fi
 ./configure --enable-release
 make
 make check
-
-if ! test x"$ENCRYPTION_LABEL" = x"" && test -r buildtools/keyring.tar.enc ; then
-	ENCRYPTED_KEY_VAR="encrypted_${ENCRYPTION_LABEL}_key"
-	ENCRYPTED_IV_VAR="encrypted_${ENCRYPTION_LABEL}_iv"
-	ENCRYPTED_KEY=$(eval echo \$${ENCRYPTED_KEY_VAR})
-	ENCRYPTED_IV=$(eval echo \$${ENCRYPTED_IV_VAR})
-	openssl aes-256-cbc -K $ENCRYPTED_KEY -iv $ENCRYPTED_IV -in buildtools/keyring.tar.enc -out buildtools/keyring.tar -d
-	chmod 600 buildtools/keyring.tar
-	( cd buildtools && tar xf keyring.tar )
-	rm buildtools/keyring.tar
-fi
-
-if test -d buildtools/keyring/docker ; then
-	mkdir -p $HOME/.docker/trust/private
-	cp buildtools/keyring/docker/*.key $HOME/.docker/trust/private
-fi
-if test -r buildtools/keyring/ssh.privkey.pem ; then
-	eval `ssh-agent -s`
-	ssh-add buildtools/keyring/ssh.privkey.pem
-fi
 
 if ! test x"$DOCKER_USERNAME" = x"" ; then
 	make push
