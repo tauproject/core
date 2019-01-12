@@ -1,0 +1,6 @@
+**/.git
+**/.gitignore
+**/Makefile
+**/Makefile.am
+**/Makefile.in
+
