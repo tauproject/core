@@ -49,9 +49,9 @@ deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib
 deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free" > /etc/apt/sources.list
 
 # Install additional packages required by almost any downstream image.
-RUN apt-get update -qq && \
-	apt-get upgrade -qq -y && \
-	apt-get install -qq -y apt-transport-https ca-certificates
+RUN apt-get update && \
+	apt-get upgrade && \
+	apt-get install apt-transport-https ca-certificates
 
 # Install the Tau trust anchor
 RUN mkdir -p /usr/local/share/ca-certificates
