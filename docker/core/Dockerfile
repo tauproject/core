@@ -39,9 +39,14 @@ APT::Install-Suggests "0"; \n\
 APT::Get::Assume-Yes "true"; \n\
 APT::Get::Force-Yes "true";' > /etc/apt/apt.conf.d/01tau
 
-RUN echo "deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free \n\
-deb http://security.debian.org/debian-security ${TAU_CORE_DEBIAN_RELEASE}/updates main contrib non-free \n\
-deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free" > /etc/apt/sources.list
+RUN echo "deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free\n\
+deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free\n\
+\n\
+deb http://security.debian.org/debian-security ${TAU_CORE_DEBIAN_RELEASE}/updates main contrib non-free\n\
+deb-src http://security.debian.org/debian-security ${TAU_CORE_DEBIAN_RELEASE}/updates main contrib non-free\n\
+\n\
+deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free\n\
+deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free" > /etc/apt/sources.list
 
 # Install additional packages required by almost any downstream image.
 RUN apt-get update -qq && \
