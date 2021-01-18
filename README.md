@@ -153,7 +153,7 @@ $ /path/to/source/configure
 ###### Configuration defaults
 
 * The resulting Docker image will be tagged with `taubuild/core`
-* The base image will be `debian/stretch-slim`
+* The base image will be `debian/stable-slim`
 * Docker Content Trust is enabled during the build
 
 Official builds specify the `--enable-release` configuration option, which
@@ -162,7 +162,7 @@ causes the Docker image to be tagged with `tauproject/core` instead of
 be contributed to the official releases.
 
 Specify `--with-debian-release=RELEASE` to override the base Debian release
-to use for the base image, defaulting to [Stretch](https://wiki.debian.org/DebianStretch).
+to use for the base image, defaulting to [the current stable release](https://www.debian.org/releases/).
 
 ##### Performing builds
 

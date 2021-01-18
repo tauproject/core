@@ -66,7 +66,7 @@ AC_ARG_WITH([debian-release],
 AS_IF([test "$TAU_CORE_DEBIAN_RELEASE" = "yes" || test "$TAU_CORE_DEBIAN_RELEASE" = "no"],
   [AC_MSG_ERROR([you must specify a Debian release (e.g., --with-debian-release=sid)])]
 )
-AS_IF([test -z "$TAU_CORE_DEBIAN_RELEASE"],[AS_VAR_SET([TAU_CORE_DEBIAN_RELEASE], [stretch])])
+AS_IF([test -z "$TAU_CORE_DEBIAN_RELEASE"],[AS_VAR_SET([TAU_CORE_DEBIAN_RELEASE], [stable])])
 AC_MSG_RESULT([$TAU_CORE_DEBIAN_RELEASE])
 
 AS_VAR_SET([disable_content_trust], [false])
