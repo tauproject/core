@@ -52,7 +52,7 @@ deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main con
 # Install additional packages required by almost any downstream image.
 RUN apt-get update && \
 	apt-get upgrade && \
-	apt-get install apt-transport-https ca-certificates
+	apt-get install apt-transport-https ca-certificates gnupg2 lsb-release curl
 
 # Install the Tau trust anchor
 RUN mkdir -p /usr/local/share/ca-certificates
