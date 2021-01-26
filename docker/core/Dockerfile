@@ -37,7 +37,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo 'APT::Install-Recommends "0"; \n\
 APT::Install-Suggests "0"; \n\
 APT::Get::Assume-Yes "true"; \n\
-APT::Get::Force-Yes "true";' > /etc/apt/apt.conf.d/01tau
+' > /etc/apt/apt.conf.d/01tau
 
 RUN echo "deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free\n\
 deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free\n\
