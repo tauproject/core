@@ -37,20 +37,19 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo 'APT::Install-Recommends "0"; \n\
 APT::Install-Suggests "0"; \n\
 APT::Get::Assume-Yes "true"; \n\
-' > /etc/apt/apt.conf.d/01tau
-
-RUN mkdir -p /etc/apt/sources.list.d && echo > /etc/apt/sources.list
-RUN echo "deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free\n\
+' > /etc/apt/apt.conf.d/01tau && \
+\
+	mkdir -p /etc/apt/sources.list.d && echo > /etc/apt/sources.list && \
+	echo "deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free\n\
 deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE} main contrib non-free\n\
 \n\
 deb http://security.debian.org/debian-security ${TAU_CORE_DEBIAN_RELEASE}/updates main contrib non-free\n\
 deb-src http://security.debian.org/debian-security ${TAU_CORE_DEBIAN_RELEASE}/updates main contrib non-free\n\
 \n\
 deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free\n\
-deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free" > /etc/apt/sources.list.d/${TAU_CORE_DEBIAN_RELEASE}.list
-
-# Install additional packages required by almost any downstream image.
-RUN apt-get update && \
+deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free" > /etc/apt/sources.list.d/${TAU_CORE_DEBIAN_RELEASE}.list && \
+\
+	apt-get update && \
 	apt-get upgrade && \
 	apt-get install apt-transport-https ca-certificates gnupg2 lsb-release curl
 
