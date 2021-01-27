@@ -21,5 +21,5 @@
 
 SUBDIRS = core
 
-dist_noinst_DATA = tau-root-ca.g1.crt
+dist_noinst_DATA = tau-root-ca.g1.cert.pem tau-packaging.g1.gpg
 

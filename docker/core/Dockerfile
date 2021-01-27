@@ -31,6 +31,12 @@ ENV TZ=UTC
 # Work within root's home directory by default
 WORKDIR /root
 
+# Install the Tau trust anchors
+RUN mkdir -p /etc/ssl/certs /etc/apt/trusted.gpg.d
+COPY tau-root-ca.g1.cert.pem /etc/ssl/certs
+COPY tau-packaging.g1.gpg /etc/apt/trusted.gpg.d
+RUN cd /etc/ssl/certs && ln -sf tau-root-ca.g1.cert.pem 764e57f5.0
+
 # Configure APT
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -49,14 +55,9 @@ deb-src http://security.debian.org/debian-security ${TAU_CORE_DEBIAN_RELEASE}/up
 deb http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free\n\
 deb-src http://deb.debian.org/debian ${TAU_CORE_DEBIAN_RELEASE}-updates main contrib non-free" > /etc/apt/sources.list.d/${TAU_CORE_DEBIAN_RELEASE}.list && \
 \
-	apt-get update && \
+	apt-get update -qq && \
 	apt-get upgrade && \
 	apt-get install apt-transport-https ca-certificates gnupg2 lsb-release curl
-
-# Install the Tau trust anchor
-RUN mkdir -p /usr/local/share/ca-certificates
-COPY tau-root-ca.g1.crt /usr/local/share/ca-certificates
-RUN update-ca-certificates
 
 # Always run an `apt-get update` before any downstream commands. This means that
 # images don't need to run it themselves.
